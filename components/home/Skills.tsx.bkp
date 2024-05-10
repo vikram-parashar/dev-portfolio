@@ -1,0 +1,85 @@
+import { useEffect } from "react";
+import { svgs } from "./skillSvgs";
+
+const N = svgs.length;
+const rnd = [
+  47, 82, 68, 16, 35, 95, 54, 21, 73, 41, 79, 61, 27, 89, 12, 58, 90, 36, 67,
+  44,
+];
+
+const Skills = () => {
+  const moveRows = (e: MouseEvent) => {
+    document.querySelectorAll(".skill-row").forEach((row, id) => {
+      if (id % 2 == 1) {
+        row.style.transform = `translateX(${(e.clientX * rnd[id]) / 300 - screen.width / 2}px)`;
+      } else {
+        row.style.transform = `translateX(-${(e.clientX * rnd[id]) / 300}px)`;
+      }
+    });
+  };
+
+  const moveRowsMob = () => {
+    const screenH = window.scrollY;
+    const screenW = screen.width;
+    document.querySelectorAll(".skill-row-mob").forEach((row, id) => {
+      if (id % 2 == 0) {
+        row.style.transform = `translateX(${(screenH * rnd[id]) / 300 - screenW / 2 - 100}px)`;
+      } else {
+        row.style.transform = `translateX(-${(screenH * rnd[id]) / 300}px)`;
+      }
+    });
+    console.log(screenH);
+  };
+
+  useEffect(() => {
+    screen.width > 767
+      ? document.addEventListener("mousemove", moveRows)
+      : document.addEventListener("scroll", moveRowsMob);
+    return () => {
+      document.removeEventListener("mouseleave", moveRows);
+      document.removeEventListener("scroll", moveRowsMob);
+    };
+  }, []);
+
+  return (
+    <>
+      <div className="h-[95vh] my-[2.5vh] bg-[#111] md:hidden mx-5 rounded-2xl overflow-hidden">
+        <div className="-rotate-12 -translate-y-[50px] -translate-x-[100px] relative gap-3 scale-90">
+          {new Array(13).fill(0).map((i, rowId) => (
+            <div
+              key={rowId}
+              className="flex reltive w-[250vw] gap-3 mb-3 skill-row-mob"
+              style={{
+                translate: "transformX(0)",
+              }}
+              data-val={rowId}
+            >
+              {new Array(11)
+                .fill(0)
+                .map((j, colId) => svgs[(colId + rnd[20 - rowId]) % N])}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="h-[95vh] my-[2.5vh] bg-[#111] overflow-hidden hidden md:block mx-5 rounded-2xl ">
+        <div className="-rotate-12 -translate-y-[50px] -translate-x-[100px] relative gap-3 scale-125 ">
+          {new Array(13).fill(0).map((i, rowId) => (
+            <div
+              key={rowId}
+              className="flex reltive w-[150vw] gap-3 mb-3 skill-row"
+              style={{
+                translate: "transformX(0)",
+              }}
+              data-val={rowId}
+            >
+              {new Array(28)
+                .fill(0)
+                .map((j, colId) => svgs[(colId + rnd[20 - rowId]) % N])}
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+export default Skills;
