@@ -95,11 +95,11 @@ const Cursor = () => {
     <div className="pointer-events-none hidden md:block">
       <div
         id="cursor"
-        className="mix-blend-difference bg-white h-2 w-2 rounded-full fixed -translate-x-1/2 -translate-y-1/2 transition duration-300"
+        className="mix-blend-difference bg-white h-2 w-2 rounded-full fixed -translate-x-1/2 -translate-y-1/2 transition duration-300 z-[100]"
         ref={cursorRef}
       ></div>
       <div
-        className="mix-blend-difference border-2 border-white w-10 h-10 rounded-full fixed -translate-x-1/2 -translate-y-1/2 transition duration-300"
+        className="mix-blend-difference border-2 border-white w-10 h-10 rounded-full fixed -translate-x-1/2 -translate-y-1/2 transition duration-300 z-[100]"
         ref={borderRef}
         style={{
           transformOrigin: "0% 0%",
