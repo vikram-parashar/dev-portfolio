@@ -1,3 +1,4 @@
+import useWindowDimensions from "@/hooks/useWindowDimension";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -124,8 +125,9 @@ type transitionStripProps = {
   delay: number;
 };
 const TransitionStrip = ({ dis, delay }: transitionStripProps) => {
+  const {width}=useWindowDimensions();
   const style =
-    typeof window != undefined && window.innerWidth > 768
+    width&&width> 768
       ? { left: `${dis}vw`, transitionDelay: `${delay}ms` }
       : { top: `${dis}vh`, transitionDelay: `${delay}ms` };
   return (

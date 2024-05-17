@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import useWindowDimensions from "@/hooks/useWindowDimension";
 
 const langs = [
   "css.webp",
@@ -48,32 +49,19 @@ const dbs = [
 const tools = ["arch.webp", "", "github.png", "", "TITLE", "", "git.png", "", "neovim.png"];
 
 const Skills = () => {
-  const [windowWidth, setWindowWidth] = useState(0);
-  const [windowHeight, setWindowHeight] = useState(0);
+  const { width, height } = useWindowDimensions();
 
-  useEffect(() => {
-    const setWindowSize = () => {
-      setWindowWidth(window.innerWidth);
-      setWindowHeight(window.innerWidth > 770 ? 1.2 * window.innerHeight : 2.1 * window.innerHeight);
-    };
-    setWindowSize();
-
-    window.addEventListener("resize", setWindowSize);
-    return () => {
-      window.removeEventListener("resize", setWindowSize);
-    };
-  }, []);
   const distances = [];
   for (let i = 1; i < 44; i++) {
     distances.push(i * 40);
   }
   return (
-    <div className="relative my-10 h-[210vh] md:h-[120vh]">
+    <div className="relative my-10 h-[210vh] md:h-[100vh]">
       <svg
-        height={windowHeight}
-        width={windowWidth}
+        height={height}
+        width={width}
         xmlns="http://www.w3.org/2000/svg"
-        className="dark:stroke-gray-200 absolute stroke-gray-900"
+        className="dark:stroke-gray-400 absolute stroke-gray-400"
       >
         {distances.map((distance, index) => (
           <line
@@ -81,23 +69,23 @@ const Skills = () => {
             x1={distance}
             y1="0"
             x2={distance}
-            y2={windowHeight}
+            y2={height}
             strokeWidth="1"
           />
         ))}
       </svg>
       <svg
-        height={windowHeight}
-        width={windowWidth}
+        height={height}
+        width={width}
         xmlns="http://www.w3.org/2000/svg"
-        className="dark:stroke-gray-200 absolute stroke-gray-900"
+        className="dark:stroke-gray-400 absolute stroke-gray-400"
       >
         {distances.map((distance, index) => (
           <line
             key={index}
             x1={0}
             y1={distance}
-            x2={windowWidth}
+            x2={width}
             y2={distance}
             strokeWidth="1"
           />
@@ -106,7 +94,7 @@ const Skills = () => {
       {/* Transparency */}
       <div className="dark:from-gray-900  absolute h-[20vh] w-screen bg-gradient-to-b from-gray-200 to-transparent"></div>
       <div className="dark:from-gray-900  absolute bottom-0 h-[20vh] w-screen bg-gradient-to-t from-gray-200 to-transparent"></div>
-      <div className="absolute top-1/2 z-10 grid w-screen -translate-y-1/2 md:grid-cols-3 md:gap-x-40 md:gap-y-20">
+      <div className="absolute z-10 grid w-screen md:top-20 md:grid-cols-3 md:gap-x-40 md:gap-y-20">
         {/* Languages */}
         <div className="mt-20 inline-grid grid-cols-3 place-content-center place-items-center gap-5">
           {langs.map((skill, index) => {

@@ -31,7 +31,7 @@ const Projects = () => {
       ))}
       <Link
         href="/projects"
-        className="relative left-1/2 -translate-x-1/2 top-10 border-2 border-gray-900 dark:border-gray-200 px-5 py-2 rounded-full text-lg font-semibold uppercase transition-colors dark:text-gray-200 dark:hover:text-gray-900 dark:hover:bg-gray-200 hover:bg-gray-900 hover:text-white"
+        className="relative cursor-hover left-1/2 -translate-x-1/2 top-10 border-2 border-gray-900 dark:border-gray-200 px-5 py-2 rounded-full text-lg font-semibold uppercase transition-colors dark:text-gray-200 dark:hover:text-gray-900 dark:hover:bg-gray-200 hover:bg-gray-900 hover:text-white"
         >View More</Link>
     </div>
   );
@@ -79,7 +79,7 @@ const ProjectCard = ({ code, name, img, tags, description }: ProjectCardProps) =
   return (
     <div ref={refCard} className="cursor-hide dark:border-b-gray-200 group relative w-full justify-between overflow-hidden border-b border-b-gray-900 py-5 md:flex md:h-32 md:p-0 md:pb-5">
       {/* tag cursor */}
-      <div ref={refCursor} className="pointer-events-none fixed z-20 hidden h-28 w-28 scale-0 items-center justify-center rounded-full bg-white transition md:flex">
+      <div ref={refCursor} className="pointer-events-none fixed z-20 hidden h-28 w-28 scale-0 items-center justify-center rounded-full bg-white transition md:flex dark:text-gray-900">
         #{code}
       </div>
       {/* desktop hover bg */}

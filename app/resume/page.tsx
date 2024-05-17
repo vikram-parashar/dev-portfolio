@@ -5,6 +5,105 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import Image from "next/image";
 
+const data = {
+  name: "Vikram Parashar",
+  job: "Web Developer",
+  address: "IIITM Campus, Gwalior, MP",
+  email: "work.mojorvicky@email.com",
+  phone: "+91 8882447382",
+  achievements: [
+    {
+      heading: "Achievement 1",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+    },
+    {
+      heading: "Achievement 2",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+    },
+  ],
+  skills: [
+    {
+      heading: "Languages",
+      list: [
+        "javascript",
+        "typescript",
+        // "golang",
+        // "Bash",
+        "HTML/CSS",
+      ],
+    },
+    {
+      heading: "Web Develpment",
+      list: [
+        "React",
+        "Next",
+        "TailwindCSS",
+        // "NodeJs",
+        // "Express",
+        // "
+      ],
+    },
+    {
+      heading: "Database Systems",
+      list: [
+        // "MySQL",
+        // "MongoDB",
+        // "PostgreSQL"
+        // "Redis"
+        // "Neo4j"
+      ],
+    },
+    {
+      heading: "DevOps/ Cloud",
+      list: [
+        // "AWS",
+        // "Firebase",
+        // "Docker",
+      ],
+    },
+    { heading: "Tools", list: ["Git", "Linux (I use Arch btw)", "Neovim"] },
+  ],
+  education: {
+    course: "Integrated B.Tech in IT+MBA",
+    institute: "IIIT Gwalior, India",
+    duration: "Nov 2022 - July 2027",
+  },
+  projects: [
+    {
+      name: "Project Name",
+      link: "parashar-dev.netlify.app/",
+      description: "Nextjs app",
+      keyPoints: [
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+      ],
+    },
+    {
+      name: "Project Name",
+      link: "parashar-dev.netlify.app/",
+      description: "Nextjs app",
+      keyPoints: [
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+      ],
+    },
+    {
+      name: "Project Name",
+      link: "parashar-dev.netlify.app/",
+      description: "Nextjs app",
+      keyPoints: [
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+      ],
+    },
+  ],
+};
+
 const Page = () => {
   return (
     <div className="w-screen min-h-screen flex bg-slate-100 justify-center">
@@ -137,102 +236,4 @@ const Page = () => {
   );
 };
 
-const data = {
-  name: "Vikram Parashar",
-  job: "Web Developer",
-  address: "IIITM Campus, Gwalior, MP",
-  email: "work.mojorvicky@email.com",
-  phone: "+91 8882447382",
-  achievements: [
-    {
-      heading: "Achievement 1",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    },
-    {
-      heading: "Achievement 2",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    },
-  ],
-  skills: [
-    {
-      heading: "Languages",
-      list: [
-        "javascript",
-        "typescript",
-        // "golang",
-        // "Bash",
-        "HTML/CSS",
-      ],
-    },
-    {
-      heading: "Web Develpment",
-      list: [
-        "React",
-        "Next",
-        "TailwindCSS",
-        // "NodeJs",
-        // "Express",
-        // "
-      ],
-    },
-    {
-      heading: "Database Systems",
-      list: [
-        // "MySQL",
-        // "MongoDB",
-        // "PostgreSQL"
-        // "Redis"
-        // "Neo4j"
-      ],
-    },
-    {
-      heading: "DevOps/ Cloud",
-      list: [
-        // "AWS",
-        // "Firebase",
-        // "Docker",
-      ],
-    },
-    { heading: "Tools", list: ["Git", "Linux (I use Arch btw)", "Neovim"] },
-  ],
-  education: {
-    course: "Integrated B.Tech in IT+MBA",
-    institute: "IIIT Gwalior, India",
-    duration: "Nov 2022 - July 2027",
-  },
-  projects: [
-    {
-      name: "Project Name",
-      link: "parashar-dev.netlify.app/",
-      description: "Nextjs app",
-      keyPoints: [
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-      ],
-    },
-    {
-      name: "Project Name",
-      link: "parashar-dev.netlify.app/",
-      description: "Nextjs app",
-      keyPoints: [
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-      ],
-    },
-    {
-      name: "Project Name",
-      link: "parashar-dev.netlify.app/",
-      description: "Nextjs app",
-      keyPoints: [
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-      ],
-    },
-  ],
-};
 export default Page;

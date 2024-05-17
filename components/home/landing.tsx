@@ -1,13 +1,15 @@
 import { useEffect, useRef } from "react";
+import useWindowDimensions from "@/hooks/useWindowDimension";
 
 const Landing = () => {
+  const { width, height } = useWindowDimensions();
   const shape = useRef<HTMLDivElement>(null);
 
   const moveShape = (e: MouseEvent) => {
-    if (shape.current) {
+    if (width&&shape.current) {
       shape.current.style.top =
-        window.innerHeight / 2 -e.clientY*0.05+20+"px";
-      shape.current.style.left = window.innerWidth / 2 - e.clientX * 0.05 + "px";
+        width / 2 -e.clientY*0.05+20+"px";
+      shape.current.style.left = width / 2 - e.clientX * 0.05 + "px";
     }
   };
 

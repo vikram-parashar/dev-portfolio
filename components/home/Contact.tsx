@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 // import emailjs from "emailjs-com";
 
@@ -8,39 +9,6 @@ export default function Contact() {
     message: "",
   });
   const [emailSent, setEmailSent] = useState({ state: "wait", message: "" });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const serviceId = import.meta.env.VITE_SERVICEID;
-    const templateId = import.meta.env.VITE_TEMPLATEID;
-    const userId = import.meta.env.VITE_USERID;
-
-    setEmailSent({ state: "process", message: "..." });
-
-    emailjs
-      .send(
-        serviceId,
-        templateId,
-        {
-          user_name: data.name,
-          user_email: data.email,
-          user_message: data.message,
-        },
-        userId,
-      )
-      .then((response) => {
-        console.log("Email sent successfully:", response);
-        setEmailSent({ state: "success", message: "Email sent successfully!" });
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error);
-        setEmailSent({
-          state: "error",
-          message: "Error sending email! Try Again Later",
-        });
-      });
-  };
 
   return (
     <div
@@ -121,10 +89,12 @@ export default function Contact() {
             </button>
           ) : emailSent.state === "process" ? (
             <div className="flex justify-center">
-              <img
+              <Image
                 src="/mailAnime.gif"
                 alt="mail"
                 className="ml-5 mt-10 h-12 w-12"
+                width={50}
+                height={50}
               />
             </div>
           ) : (

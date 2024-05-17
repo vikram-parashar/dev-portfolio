@@ -3,7 +3,6 @@ import Cursor from "@/components/Cursor";
 import Skills from "@/components/home/Skills";
 import Landing from "@/components/home/landing";
 import Projects from "@/components/home/Projects";
-import Link from "next/link";
 import Contact from "@/components/home/Contact";
 import Footer from "@/components/home/Footer";
 import Header from "@/components/Header";
