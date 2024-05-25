@@ -1,11 +1,10 @@
 "use client";
-import useWindowDimensions from "@/hooks/useWindowDimension";
+import useWindowDimensions from "@/lib/hooks/useWindowDimension";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const Template = ({ children }: { children: React.ReactNode }) => {
   const path = usePathname();
-  const [animate, setAnimate] = useState<boolean>(false);
 
   useEffect(() => {
     const transitionEl = document.querySelectorAll(".load-strip");

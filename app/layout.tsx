@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="">
-      <body className={myFont.className}>
+      <body className={`${myFont.className}`}>
           {children}
       </body>
     </html>

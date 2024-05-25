@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import useWindowDimensions from "@/hooks/useWindowDimension";
+import useWindowDimensions from "@/lib/hooks/useWindowDimension";
 
 const langs = [
   "css.webp",
@@ -9,9 +8,9 @@ const langs = [
   "typescript.webp",
   "TITLE",
   "",
-"",  // "bash.webp",
+  "", // "bash.webp",
   "",
-"",  // "python.png",
+  "", // "python.png",
 ];
 const web = [
   "",
@@ -19,68 +18,87 @@ const web = [
   "react.webp",
   "tailwindcss.webp",
   "TITLE",
-"",  // "redux.png",
-  "",// "nodejs.webp",
-  "",// "express.webp",
+  "", // "redux.png",
+  "", // "nodejs.webp",
+  "", // "express.webp",
   "",
 ];
 const devops = [
-"",  // "docker.webp",
-"",  // "kubernetes.png",
-"",  // "aws.png",
+  "", // "docker.webp",
+  "", // "kubernetes.png",
+  "", // "aws.png",
   "",
   "TITLE",
-"",  // "azure.png",
-"",  // "gcp.webp",
-"",  // "ansible.png",
-"",  // "jenkins.png",
+  "", // "azure.png",
+  "", // "gcp.webp",
+  "", // "ansible.png",
+  "", // "jenkins.png",
 ];
 const dbs = [
-"",  // "mysql.png",
+  "", // "mysql.png",
   "",
-"",  // "mongodb.png",
+  "", // "mongodb.png",
   "",
   "TITLE",
   "",
-"",  // "postgresql.png",
+  "", // "postgresql.png",
   "",
-"",  // "redis.png",
+  "", // "redis.png",
 ];
-const tools = ["arch.webp", "", "github.png", "", "TITLE", "", "git.png", "", "neovim.png"];
+const tools = [
+  "arch.webp",
+  "",
+  "github.png",
+  "",
+  "TITLE",
+  "",
+  "git.png",
+  "",
+  "neovim.png",
+];
 
 const Skills = () => {
   const { width, height } = useWindowDimensions();
 
-  const distances = [];
-  for (let i = 1; i < 44; i++) {
-    distances.push(i * 40);
-  }
+  const rows:number[] = [];
+  const cols:number[] = [];
+  const rowsCount = width < 768 ? 42 : 19;
+  const colsCount = width < 768 ? 9 : 30;
+  const dis = width<768?width/9 : width/30;
+
+    for (let i = 0; i < rowsCount; i++) {
+      rows.push(i * dis);
+    }
+    for (let i = 0; i < colsCount; i++) {
+      cols.push(i * dis);
+    }
+
   return (
     <div className="relative my-10 h-[210vh] md:h-[100vh]">
       <svg
-        height={height}
+        height={width<768?2.1*height:height}
         width={width}
         xmlns="http://www.w3.org/2000/svg"
         className="dark:stroke-gray-400 absolute stroke-gray-400"
       >
-        {distances.map((distance, index) => (
+        {cols.map((distance, index) => (
           <line
             key={index}
             x1={distance}
             y1="0"
             x2={distance}
-            y2={height}
+            y2={width<768?2.1*height:height}
             strokeWidth="1"
           />
         ))}
       </svg>
       <svg
-        height={height}
+        height={width<768?2.1*height:height}
         width={width}
         xmlns="http://www.w3.org/2000/svg"
         className="dark:stroke-gray-400 absolute stroke-gray-400"
       >
-        {distances.map((distance, index) => (
+        {rows.map((distance, index) => (
           <line
             key={index}
             x1={0}
@@ -96,7 +114,7 @@ const Skills = () => {
       <div className="dark:from-gray-900  absolute bottom-0 h-[20vh] w-screen bg-gradient-to-t from-gray-200 to-transparent"></div>
       <div className="absolute z-10 grid w-screen md:top-20 md:grid-cols-3 md:gap-x-40 md:gap-y-20">
         {/* Languages */}
-        <div className="mt-20 inline-grid grid-cols-3 place-content-center place-items-center gap-5">
+        <div className="mt-20 inline-grid grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
           {langs.map((skill, index) => {
             if (skill === "TITLE")
               return (
@@ -124,12 +142,10 @@ const Skills = () => {
           })}
         </div>
         <div className="hidden place-items-center md:grid">
-          <span className="pl-3 text-3xl font-black uppercase">
-            My skills
-          </span>
+          <span className="pl-3 text-3xl font-black uppercase">My skills</span>
         </div>
         {/* Web */}
-        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5">
+        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
           {web.map((skill, index) => {
             if (skill === "TITLE")
               return (
@@ -155,7 +171,7 @@ const Skills = () => {
           })}
         </div>
         {/* DevOps */}
-        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5">
+        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
           {devops.map((skill, index) => {
             if (skill === "TITLE")
               return (
@@ -185,7 +201,7 @@ const Skills = () => {
           })}
         </div>
         {/* DB */}
-        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5">
+        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
           {dbs.map((skill, index) => {
             if (skill === "TITLE")
               return (
@@ -209,14 +225,16 @@ const Skills = () => {
           })}
         </div>
         {/* Tools */}
-        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5">
+        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
           {tools.map((skill, index) => {
             if (skill === "TITLE")
               return (
                 <span key={index}>
                   <span className="pl-3 text-3xl font-black uppercase">my</span>
                   <br />
-                  <span className="pl-3 text-3xl font-black uppercase">KIT</span>
+                  <span className="pl-3 text-3xl font-black uppercase">
+                    KIT
+                  </span>
                 </span>
               );
             else if (skill === "") return <div key={index} className=""></div>;

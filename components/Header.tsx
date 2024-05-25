@@ -1,4 +1,4 @@
-import useWindowDimensions from "@/hooks/useWindowDimension";
+import useWindowDimensions from "@/lib/hooks/useWindowDimension";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -48,7 +48,7 @@ const Header = () => {
       >
         <ul>
           {links.map((link, index) => (
-            <li key={index} className="py-4 text-center text-gray-900 text-2xl">
+            <li key={index} className="py-4 text-center text-gray-900 text-2xl dark:text-gray-200">
               <Link href={link.link}>{link.text}</Link>
             </li>
           ))}
@@ -64,7 +64,7 @@ const Header = () => {
         <Image
           src={darkMode ? "/signatureWhite.png" : "/signatureBlack.png"}
           alt="signature"
-          className="h-full"
+          className="h-full cursor-hover"
           width={150}
           height={200}
         />

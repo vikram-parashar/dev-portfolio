@@ -1,14 +1,13 @@
 import { useEffect, useRef } from "react";
-import useWindowDimensions from "@/hooks/useWindowDimension";
+import useWindowDimensions from "@/lib/hooks/useWindowDimension";
 
 const Landing = () => {
   const { width, height } = useWindowDimensions();
   const shape = useRef<HTMLDivElement>(null);
 
   const moveShape = (e: MouseEvent) => {
-    if (width&&shape.current) {
-      shape.current.style.top =
-        width / 2 -e.clientY*0.05+20+"px";
+    if (width && shape.current) {
+      shape.current.style.top = height / 2 - e.clientY * 0.05 + 20 + "px";
       shape.current.style.left = width / 2 - e.clientX * 0.05 + "px";
     }
   };
@@ -18,12 +17,12 @@ const Landing = () => {
     return () => {
       document.removeEventListener("mouseleave", moveShape);
     };
-  }, []);
+  });
 
   return (
     <div
       id="atTop"
-      className="relative flex h-screen w-screen items-center justify-center"
+      className="relative flex flex-col gap-10 h-screen w-screen items-center justify-center"
     >
       <div className="mx-auto px-5 text-[13vw]  font-medium uppercase leading-[1.1]  md:w-[76vw] md:text-[9vw]">
         <span className="cursor-hover relative left-1/2 inline-block -translate-x-1/2">
@@ -33,7 +32,7 @@ const Landing = () => {
           <span className="dark:text-gray-400 hidden text-sm normal-case leading-tight text-gray-700 md:block">
             Experienced React web developer proficient in DevOps
             <br /> methodologies, adept at designing and deploying scalable
-            <br /> applications, ensuring seamless integration and optimal{" "}
+            <br /> applications, ensuring seamless integration and optimal
             <br />
             performance.
           </span>
@@ -41,6 +40,11 @@ const Landing = () => {
         </div>
         <span className="cursor-hover inline-block">Parashar{"<-"} </span>
       </div>
+      <span className="dark:text-gray-400 text-sm normal-case leading-tight text-gray-700 md:hidden px-5 text-center">
+        Experienced React web developer proficient in DevOps methodologies,
+        adept at designing and deploying scalable applications, ensuring
+        seamless integration and optimal performance.
+      </span>
       <div
         className="dark:bg-white absolute left-1/2 top-1/2 hidden h-[650px] w-8 -translate-x-1/2 -translate-y-1/2 rotate-[30deg] bg-gray-200 mix-blend-difference md:block"
         ref={shape}

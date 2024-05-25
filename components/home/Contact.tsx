@@ -1,6 +1,5 @@
-import Image from "next/image";
+import sendMail from "@/lib/fun/sendMail";
 import { useState } from "react";
-// import emailjs from "emailjs-com";
 
 export default function Contact() {
   const [data, setData] = useState({
@@ -8,7 +7,9 @@ export default function Contact() {
     email: "",
     message: "",
   });
-  const [emailSent, setEmailSent] = useState({ state: "wait", message: "" });
+  const [emailSent, setEmailSent] = useState({ state: "process", message: "" });
+
+
 
   return (
     <div
@@ -65,7 +66,6 @@ export default function Contact() {
             onChange={(e) => setData({ ...data, message: e.target.value })}
             className="dark:border-gray-200 dark:bg-gray-900 mt-10 w-full border-b border-black bg-gray-200 pb-1 text-xl"
           />
-          {emailSent.state === "wait" ? (
             <button
               type="submit"
               className="mx-auto mt-5 flex items-center pl-10 text-left text-xl font-bold md:mx-0 md:mt-10"
@@ -87,21 +87,6 @@ export default function Contact() {
                 />
               </svg>
             </button>
-          ) : emailSent.state === "process" ? (
-            <div className="flex justify-center">
-              <Image
-                src="/mailAnime.gif"
-                alt="mail"
-                className="ml-5 mt-10 h-12 w-12"
-                width={50}
-                height={50}
-              />
-            </div>
-          ) : (
-            <p className="mt-10 border-b-4 border-[#f00] py-2 text-center text-xl">
-              {emailSent.message}
-            </p>
-          )}
         </form>
       </div>
     </div>
