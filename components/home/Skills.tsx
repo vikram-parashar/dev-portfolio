@@ -1,82 +1,43 @@
 import Image from "next/image";
 import useWindowDimensions from "@/lib/hooks/useWindowDimension";
 
-const langs = [
-  "css.webp",
-  "html.webp",
-  "javascript.webp",
-  "typescript.webp",
-  "TITLE",
-  "",
-  "", // "bash.webp",
-  "",
-  "", // "python.png",
-];
-const web = [
-  "",
-  "nextjs.webp",
-  "react.webp",
-  "tailwindcss.webp",
-  "TITLE",
-  "", // "redux.png",
-  "", // "nodejs.webp",
-  "", // "express.webp",
-  "",
-];
-const devops = [
-  "", // "docker.webp",
-  "", // "kubernetes.png",
-  "", // "aws.png",
-  "",
-  "TITLE",
-  "", // "azure.png",
-  "", // "gcp.webp",
-  "", // "ansible.png",
-  "", // "jenkins.png",
-];
-const dbs = [
-  "", // "mysql.png",
-  "",
-  "", // "mongodb.png",
-  "",
-  "TITLE",
-  "",
-  "", // "postgresql.png",
-  "",
-  "", // "redis.png",
-];
-const tools = [
-  "arch.webp",
-  "",
-  "github.png",
-  "",
-  "TITLE",
-  "",
-  "git.png",
-  "",
-  "neovim.png",
+const skillsWrapper = [
+  {
+    category: "langs",
+    skills: ["css.webp", "html.webp", "javascript.webp", "typescript.webp"],
+  },
+  {
+    category: "web",
+    skills: ["nextjs.webp", "react.webp", "tailwindcss.webp"],
+  },
+  { category: "devops", skills: ["aws.png"] },
+  { category: "dbs", skills: ["postgresql.png"] },
+  {
+    category: "tools",
+    skills: ["arch.webp", "github.png", "git.png", "neovim.png"],
+  },
 ];
 
 const Skills = () => {
   const { width, height } = useWindowDimensions();
 
-  const rows:number[] = [];
-  const cols:number[] = [];
+  const rows: number[] = [];
+  const cols: number[] = [];
   const rowsCount = width < 768 ? 42 : 19;
   const colsCount = width < 768 ? 9 : 30;
-  const dis = width<768?width/9 : width/30;
+  const dis = width < 768 ? width / 9 : width / 30;
 
-    for (let i = 0; i < rowsCount; i++) {
-      rows.push(i * dis);
-    }
-    for (let i = 0; i < colsCount; i++) {
-      cols.push(i * dis);
-    }
+  for (let i = 0; i < rowsCount; i++) {
+    rows.push(i * dis);
+  }
+  for (let i = 0; i < colsCount; i++) {
+    cols.push(i * dis);
+  }
 
   return (
     <div className="relative my-10 h-[210vh] md:h-[100vh]">
       <svg
-        height={width<768?2.1*height:height}
+        height={width < 768 ? 2.1 * height : height}
         width={width}
         xmlns="http://www.w3.org/2000/svg"
         className="dark:stroke-gray-400 absolute stroke-gray-400"
@@ -87,13 +48,13 @@ const Skills = () => {
             x1={distance}
             y1="0"
             x2={distance}
-            y2={width<768?2.1*height:height}
+            y2={width < 768 ? 2.1 * height : height}
             strokeWidth="1"
           />
         ))}
       </svg>
       <svg
-        height={width<768?2.1*height:height}
+        height={width < 768 ? 2.1 * height : height}
         width={width}
         xmlns="http://www.w3.org/2000/svg"
         className="dark:stroke-gray-400 absolute stroke-gray-400"
@@ -112,146 +73,47 @@ const Skills = () => {
       {/* Transparency */}
       <div className="dark:from-gray-900  absolute h-[20vh] w-screen bg-gradient-to-b from-gray-200 to-transparent"></div>
       <div className="dark:from-gray-900  absolute bottom-0 h-[20vh] w-screen bg-gradient-to-t from-gray-200 to-transparent"></div>
-      <div className="absolute z-10 grid w-screen md:top-20 md:grid-cols-3 md:gap-x-40 md:gap-y-20">
-        {/* Languages */}
-        <div className="mt-20 inline-grid grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
-          {langs.map((skill, index) => {
-            if (skill === "TITLE")
+      {/* Skills render */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-20 md:m-0 place-items-center">
+        {skillsWrapper.map((collection, index) => (
+          <div
+            key={index}
+            className="h-[300px] w-[300px] md:h-[380px] md:w-[380px] relative grid place-items-center"
+          >
+            <h1 className="text-2xl font-bold text-center">
+              {collection.category}
+            </h1>
+            {collection.skills.map((skill, index) => {
+              const angle =
+                ((2 * Math.PI) / collection.skills.length) * index + 1;
+              const radius = 100;
               return (
-                <span key={index}>
-                  <span className="pl-3 text-3xl font-black uppercase">
-                    Lang
-                  </span>
-                  <br />
-                  <span className="text-3xl font-black uppercase">Uages</span>
-                </span>
-              );
-            else if (skill === "") return <div key={index} className=""></div>;
-            else {
-              return (
-                <Image
+                <div
                   key={index}
-                  src={`/img/skills/${skill}`}
-                  className="w-16"
-                  width={50}
-                  height={50}
-                  alt={skill}
-                />
+                  className="flex justify-center absolute"
+                  style={{
+                    top:
+                      width > 768
+                        ? `${190 + radius * Math.cos(angle)}px`
+                        : `${150 + radius * Math.cos(angle)}px`,
+                    left:
+                      width > 768
+                        ? `${190 + radius * Math.sin(angle)}px`
+                        : `${150 + radius * Math.sin(angle)}px`,
+                    transform: "translate(-50%,-50%)",
+                  }}
+                >
+                  <Image
+                    src={`/img/skills/${skill}`}
+                    width={50}
+                    height={50}
+                    alt={skill}
+                  />
+                </div>
               );
-            }
-          })}
-        </div>
-        <div className="hidden place-items-center md:grid">
-          <span className="pl-3 text-3xl font-black uppercase">My skills</span>
-        </div>
-        {/* Web */}
-        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
-          {web.map((skill, index) => {
-            if (skill === "TITLE")
-              return (
-                <span key={index}>
-                  <span className="pl-3 text-3xl font-black uppercase">
-                    web
-                  </span>
-                </span>
-              );
-            else if (skill === "") return <div key={index} className=""></div>;
-            else {
-              return (
-                <Image
-                  key={index}
-                  src={`/img/skills/${skill}`}
-                  className="w-16"
-                  width={50}
-                  height={50}
-                  alt={skill}
-                />
-              );
-            }
-          })}
-        </div>
-        {/* DevOps */}
-        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
-          {devops.map((skill, index) => {
-            if (skill === "TITLE")
-              return (
-                <span key={index}>
-                  <span className="pl-3 text-3xl font-black uppercase">
-                    Dev
-                  </span>
-                  <br />
-                  <span className="pl-3 text-3xl font-black uppercase">
-                    Ops
-                  </span>
-                </span>
-              );
-            else if (skill === "") return <div key={index} className=""></div>;
-            else {
-              return (
-                <Image
-                  key={index}
-                  src={`/img/skills/${skill}`}
-                  className="w-16"
-                  width={50}
-                  height={50}
-                  alt={skill}
-                />
-              );
-            }
-          })}
-        </div>
-        {/* DB */}
-        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
-          {dbs.map((skill, index) => {
-            if (skill === "TITLE")
-              return (
-                <span key={index}>
-                  <span className="pl-3 text-3xl font-black uppercase">DB</span>
-                </span>
-              );
-            else if (skill === "") return <div key={index} className=""></div>;
-            else {
-              return (
-                <Image
-                  key={index}
-                  src={`/img/skills/${skill}`}
-                  className="w-16"
-                  width={50}
-                  height={50}
-                  alt={skill}
-                />
-              );
-            }
-          })}
-        </div>
-        {/* Tools */}
-        <div className="mt-16 grid  grid-cols-3 place-content-center place-items-center gap-5 min-h-[254px]">
-          {tools.map((skill, index) => {
-            if (skill === "TITLE")
-              return (
-                <span key={index}>
-                  <span className="pl-3 text-3xl font-black uppercase">my</span>
-                  <br />
-                  <span className="pl-3 text-3xl font-black uppercase">
-                    KIT
-                  </span>
-                </span>
-              );
-            else if (skill === "") return <div key={index} className=""></div>;
-            else {
-              return (
-                <Image
-                  key={index}
-                  src={`/img/skills/${skill}`}
-                  className="w-16"
-                  width={50}
-                  height={50}
-                  alt={skill}
-                />
-              );
-            }
-          })}
-        </div>
+            })}
+          </div>
+        ))}
       </div>
     </div>
   );

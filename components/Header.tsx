@@ -46,9 +46,9 @@ const Header = () => {
       <div
         className={`fixed top-0 h-[75vh] w-screen origin-top bg-gray-300 transition delay-200 duration-500 ease-out md:right-0 md:h-screen md:w-[75vw] md:origin-right ${menuOpen ? "scale-y-100 md:scale-x-100" : "scale-y-0 md:scale-x-0 md:scale-y-100"} dark:bg-gray-800 z-[99] text-white pt-20`}
       >
-        <ul>
+        <ul className="h-full flex flex-col justify-around">
           {links.map((link, index) => (
-            <li key={index} className="py-4 text-center text-gray-900 text-2xl dark:text-gray-200">
+            <li key={index} className="py-4 text-center text-gray-800 text-4xl dark:text-gray-200 uppercase cursor-hover">
               <Link href={link.link}>{link.text}</Link>
             </li>
           ))}
@@ -68,7 +68,7 @@ const Header = () => {
           width={150}
           height={200}
         />
-        <div>
+        <div className="cursor-hover">
           <button onClick={changeTheme} className="relative top-[0.4rem] mr-4">
             {darkMode ? (
               <svg
