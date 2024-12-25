@@ -35,6 +35,15 @@ const Header = () => {
   useEffect(() => {
     document.body.classList.toggle("dark", darkMode);
   }, [darkMode]);
+  useEffect(() => {
+    const closeMenu = () => {
+      setMenuOpen(false);
+    }
+    document.body.addEventListener("click", closeMenu);
+    return () => {
+      document.body.removeEventListener("click", closeMenu);
+    };
+  }, [darkMode]);
 
   const changeTheme = () => {
     const transitionEl = document.querySelectorAll(".change-color");

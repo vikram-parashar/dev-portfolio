@@ -21,4 +21,5 @@ input:focus {
 
 html {
   scroll-behavior: smooth !important;
+  background: #e5e7eb;
 }

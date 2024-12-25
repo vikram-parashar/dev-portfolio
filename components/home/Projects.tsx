@@ -8,8 +8,8 @@ const data = [
     code: "DES002",
     name: "harrygraphics.in",
     link: "https://harrygraphics.in/",
-    img: "sample.jpg",
-    tags: ["Next.js", "TailwindCss", "Netlify"],
+    img: "harry-graphics.png",
+    tags: ["Next.js", "Supabase", "Cloudflare r2", "ShadCN", "TailwindCss"],
     description: `Professional portfolio website showcasing innovative printing and manufacturing solutions, products, and services tailored for industry-leading businesses.`
   },
   {
@@ -17,41 +17,49 @@ const data = [
     name: "mahatejasinnovations.com",
     link: "https://mahatejasinnovations.com",
     img: "mahatejas.png",
-    tags: ["React.js", "Redux", "Vercel", "TailwindCss"],
+    tags: ["MongoDB", "Express", "React.js", "Redux", "Vercel", "TailwindCss"],
     description: `E-commerce platform offering advanced propulsion system solutions, streamlining product selection, customization, and purchase for industrial clients worldwide.`
   },
   {
-    code: "DES001",
-    name: "Next Project",
-    link: "https://mahatejasinnovations.com",
-    img: "mahatejas.png",
-    tags: ["Tag1", "Tag2", "Tag3", "Tag4"],
-    description: `my description`
+    code: "DES000",
+    name: "Dev Portfolio",
+    link: "https://vikram-builds.vercel.app",
+    img: "folio.png",
+    tags: ["React.js", "Redux", "Vercel", "TailwindCss"],
+    description: `My Developer Portfolio showcasing my skills, projects, and contact information.`
   },
-  {
-    code: "DES001",
-    name: "Next Project",
-    link: "https://mahatejasinnovations.com",
-    img: "mahatejas.png",
-    tags: ["Tag1", "Tag2", "Tag3", "Tag4"],
-    description: `my description`
-  },
-  {
-    code: "DES001",
-    name: "Next Project",
-    link: "https://mahatejasinnovations.com",
-    img: "mahatejas.png",
-    tags: ["Tag1", "Tag2", "Tag3", "Tag4"],
-    description: `my description`
-  },
-  {
-    code: "DES001",
-    name: "Next Project",
-    link: "https://mahatejasinnovations.com",
-    img: "mahatejas.png",
-    tags: ["Tag1", "Tag2", "Tag3", "Tag4"],
-    description: `my description`
-  },
+  // {
+  //   code: "DES001",
+  //   name: "Next Project",
+  //   link: "https://mahatejasinnovations.com",
+  //   img: "mahatejas.png",
+  //   tags: ["Tag1", "Tag2", "Tag3", "Tag4"],
+  //   description: `my description`
+  // },
+  // {
+  //   code: "DES001",
+  //   name: "Next Project",
+  //   link: "https://mahatejasinnovations.com",
+  //   img: "mahatejas.png",
+  //   tags: ["Tag1", "Tag2", "Tag3", "Tag4"],
+  //   description: `my description`
+  // },
+  // {
+  //   code: "DES001",
+  //   name: "Next Project",
+  //   link: "https://mahatejasinnovations.com",
+  //   img: "mahatejas.png",
+  //   tags: ["Tag1", "Tag2", "Tag3", "Tag4"],
+  //   description: `my description`
+  // },
+  // {
+  //   code: "DES001",
+  //   name: "Next Project",
+  //   link: "https://mahatejasinnovations.com",
+  //   img: "mahatejas.png",
+  //   tags: ["Tag1", "Tag2", "Tag3", "Tag4"],
+  //   description: `my description`
+  // },
 ];
 const Projects = () => {
   const howMany = 5;
@@ -159,7 +167,7 @@ const ProjectCard = ({
           </Link>
           <Image
             src={`/img/projects/${img}`}
-            className="mb-3 mt-2 aspect-video w-full rounded-lg object-cover group-hover:block md:fixed md:bottom-5 md:right-5 md:mt-0 md:hidden md:w-[30rem]"
+            className="mb-3 mt-2 aspect-video w-full rounded-lg object-cover group-hover:block md:fixed md:bottom-5 md:right-5 md:mt-0 md:hidden md:w-[30rem] border border-gray-900 dark:border-gray-200"
             alt={name}
             height={400}
             width={400}
