@@ -1,4 +1,5 @@
 import useWindowDimensions from "@/lib/hooks/useWindowDimension";
+import { Moon, Sun } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,20 +8,27 @@ import { useEffect, useState } from "react";
 const links = [
   {
     text: "Home",
-    link: "/",
+    link: "/#atTop",
   },
   {
     text: "Resume",
-    link: "/resume",
+    link: "/resume.pdf",
   },
   {
     text: "Projects",
-    link: "/projects",
+    link: "#projectsSection",
+  },
+  {
+    text: "Skills",
+    link: "#skillsSection",
+  },
+  {
+    text: "Contact",
+    link: "#contactSection",
   },
 ];
 
 const Header = () => {
-  const path = usePathname();
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -48,7 +56,7 @@ const Header = () => {
       >
         <ul className="h-full flex flex-col justify-around">
           {links.map((link, index) => (
-            <li key={index} className="py-4 text-center text-gray-800 text-4xl dark:text-gray-200 uppercase cursor-hover">
+            <li key={index} className="py-4 text-center text-gray-800 text-2xl tracking-widest dark:text-gray-200 uppercase cursor-hover">
               <Link href={link.link}>{link.text}</Link>
             </li>
           ))}
@@ -60,6 +68,7 @@ const Header = () => {
       <div
         className={`dark:bg-gray-800 fixed z-[100] h-2 w-screen bg-gray-300 transition duration-500 ease-in-out md:h-screen md:w-2 ${menuOpen ? "translate-y-[78vh] md:translate-x-[23vw] md:translate-y-0" : "-translate-y-4 md:translate-x-[100vw]"}`}
       ></div>
+
       <header className="fixed top-0 z-[99] flex w-screen justify-between px-5 py-4 backdrop-blur-sm">
         <Image
           src={darkMode ? "/signatureWhite.png" : "/signatureBlack.png"}
@@ -68,43 +77,20 @@ const Header = () => {
           width={150}
           height={200}
         />
-        <div className="cursor-hover">
-          <button onClick={changeTheme} className="relative top-[0.4rem] mr-4">
-            {darkMode ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="h-6 w-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="h-6 w-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                />
-              </svg>
-            )}
+        <div className="cursor-hover flex gap-5 items-center mt-1">
+          <button onClick={changeTheme}>
+            {darkMode ? <Moon /> : <Sun />}
           </button>
-          <button onClick={() => setMenuOpen((prev) => !prev)} className="">
+          <button onClick={() => setMenuOpen((prev) => !prev)} className="md:hidden">
             Menu
           </button>
+          <ul className="h-full justify-around gap-5 hidden md:flex">
+            {links.map((link, index) => (
+              <li key={index} >
+                <Link onClick={()=>setMenuOpen(false)} href={link.link} target={link.text === "Resume" ? '_blank' : '_self'}>{link.text}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </header>
       {/* Transition Wall */}
@@ -125,9 +111,9 @@ type transitionStripProps = {
   delay: number;
 };
 const TransitionStrip = ({ dis, delay }: transitionStripProps) => {
-  const {width}=useWindowDimensions();
+  const { width } = useWindowDimensions();
   const style =
-    width&&width> 768
+    width && width > 768
       ? { left: `${dis}vw`, transitionDelay: `${delay}ms` }
       : { top: `${dis}vh`, transitionDelay: `${delay}ms` };
   return (

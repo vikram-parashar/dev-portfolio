@@ -30,20 +30,19 @@ const Landing = () => {
         </span>
         <div className="flex items-center justify-between">
           <span className="dark:text-gray-400 hidden text-sm normal-case leading-tight text-gray-700 md:block">
-            Experienced React web developer proficient in DevOps
-            <br /> methodologies, adept at designing and deploying scalable
-            <br /> applications, ensuring seamless integration and optimal
-            <br />
-            performance.
+            Skilled software developer with expertise in Golang, Next.js,
+            <br />and frontend technologies. Passionate about building efficient,
+            <br />scalable web applications and delivering high-quality user
+            <br />experiences. Strong problem-solving and collaborative skills
           </span>
           <span className="cursor-hover">Vikram</span>
         </div>
         <span className="cursor-hover inline-block">Parashar{"<-"} </span>
       </div>
       <span className="dark:text-gray-400 text-sm normal-case leading-tight text-gray-700 md:hidden px-5 text-center">
-        Experienced React web developer proficient in DevOps methodologies,
-        adept at designing and deploying scalable applications, ensuring
-        seamless integration and optimal performance.
+        Skilled software developer with expertise in Golang, Next.js, and frontend technologies.
+        Passionate about building efficient, scalable web applications and delivering high-quality user experiences.
+        Strong problem-solving and collaborative skills
       </span>
       <div
         className="dark:bg-white absolute left-1/2 top-1/2 hidden h-[650px] w-8 -translate-x-1/2 -translate-y-1/2 rotate-[30deg] bg-gray-200 mix-blend-difference md:block"

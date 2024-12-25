@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 const Template = ({ children }: { children: React.ReactNode }) => {
   const path = usePathname();
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     const transitionEl = document.querySelectorAll(".load-strip");
@@ -12,16 +13,14 @@ const Template = ({ children }: { children: React.ReactNode }) => {
       el.classList.remove("scale-y-100");
       el.classList.add("scale-y-0");
     });
-  }, [path]);
+  }, [path, width]);
 
+  const stripsIndex = [0, 1, 2, 3, 4, 5]
   return (
     <>
-      <TransitionStrip dis={0} delay={0} />
-      <TransitionStrip dis={16.67} delay={100} />
-      <TransitionStrip dis={33.33} delay={200} />
-      <TransitionStrip dis={50} delay={300} />
-      <TransitionStrip dis={66.67} delay={400} />
-      <TransitionStrip dis={83.33} delay={500} />
+      {stripsIndex.map(num =>
+        <TransitionStrip dis={100 / 6 * num} delay={100 * (num + 1)} key={num} />
+      )}
       {children}
     </>
   );
@@ -35,13 +34,16 @@ const TransitionStrip = ({ dis, delay }: transitionStripProps) => {
 
   const style =
     width && width > 768
-      ? { left: `${dis}vw`, transitionDelay: `${delay}ms` }
-      : { top: `${dis}vh`, transitionDelay: `${delay}ms` };
+      ? { left: `${dis}vw`, top: '0vh', transitionDelay: `${delay}ms` }
+      : { top: `${dis}vh`, left: '0vw', transitionDelay: `${delay}ms` };
+
   return (
     <div
-      className={`load-strip dark:bg-gray-800 fixed z-[999] h-[16.68vh] w-screen origin-bottom md:bottom-0 md:h-screen md:w-[16.68vw] delay-[${delay}ms] scale-y-100 bg-gray-300 transition duration-300`}
+      className={`load-strip dark:bg-gray-800 fixed z-[999] h-[16.68vh] w-screen origin-bottom 
+        md:h-screen md:w-[16.68vw] ${!width && 'opacity-0'}
+        delay-[${delay}ms] scale-y-100 bg-gray-300 transition-transform duration-300`}
       style={style}
     ></div>
-  );
+  )
 };
 export default Template;

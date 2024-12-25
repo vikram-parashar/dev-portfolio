@@ -4,14 +4,13 @@ import useWindowDimensions from "@/lib/hooks/useWindowDimension";
 const skillsWrapper = [
   {
     category: "langs",
-    skills: ["css.webp", "html.webp", "javascript.webp", "typescript.webp"],
+    skills: ["css.webp", "html.webp", "javascript.webp", "typescript.webp", "golang.png", "bash.png"],
   },
   {
     category: "web",
-    skills: ["nextjs.webp", "react.webp", "tailwindcss.webp"],
+    skills: ["nextjs.webp", "react.webp", "tailwindcss.webp","express.webp","redux.png"],
   },
-  { category: "devops", skills: ["aws.png"] },
-  { category: "dbs", skills: ["postgresql.png"] },
+  { category: "dbs", skills: ["postgresql.png","mysql.png","mongodb.png","prisma.png"] },
   {
     category: "tools",
     skills: ["arch.webp", "github.png", "git.png", "neovim.png"],
@@ -23,7 +22,7 @@ const Skills = () => {
 
   const rows: number[] = [];
   const cols: number[] = [];
-  const rowsCount = width < 768 ? 42 : 19;
+  const rowsCount = width < 768 ? 42 : 21;
   const colsCount = width < 768 ? 9 : 30;
   const dis = width < 768 ? width / 9 : width / 30;
 
@@ -35,7 +34,7 @@ const Skills = () => {
   }
 
   return (
-    <div className="relative my-10 h-[210vh] md:h-[100vh]">
+    <div id="skillsSection" className="relative my-10 py-5 h-[210vh] md:h-[110vh] overflow-hidden flex flex-row justify-center">
       <svg
         height={width < 768 ? 2.1 * height : height}
         width={width}
@@ -74,7 +73,7 @@ const Skills = () => {
       <div className="dark:from-gray-900  absolute h-[20vh] w-screen bg-gradient-to-b from-gray-200 to-transparent"></div>
       <div className="dark:from-gray-900  absolute bottom-0 h-[20vh] w-screen bg-gradient-to-t from-gray-200 to-transparent"></div>
       {/* Skills render */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-20 md:m-0 place-items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0 mt-20 md:m-0 place-items-center w-full">
         {skillsWrapper.map((collection, index) => (
           <div
             key={index}
@@ -86,7 +85,7 @@ const Skills = () => {
             {collection.skills.map((skill, index) => {
               const angle =
                 ((2 * Math.PI) / collection.skills.length) * index + 1;
-              const radius = 100;
+              const radius = width < 768 ? 100 : 140;
               return (
                 <div
                   key={index}
@@ -105,8 +104,9 @@ const Skills = () => {
                 >
                   <Image
                     src={`/img/skills/${skill}`}
-                    width={50}
-                    height={50}
+                    className="w-12 h-12 md:w-16 md:h-16"
+                    width={60}
+                    height={60}
                     alt={skill}
                   />
                 </div>
