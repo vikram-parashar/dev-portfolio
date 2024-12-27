@@ -1,4 +1,4 @@
-import { ArrowUpLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -154,13 +154,13 @@ const ProjectCard = ({
           #{code}
         </div>
         {/* desktop hover bg */}
-        <div className="absolute h-full w-full origin-top scale-y-0 bg-gray-900 transition duration-500 group-hover:scale-y-100 dark:bg-gray-200"></div>
+        <div className="absolute h-full w-full origin-top scale-y-0 bg-gray-900 transition duration-500 md:group-hover:scale-y-100 dark:bg-gray-200"></div>
         {/* left side */}
         <div className="relative z-50 flex-col justify-end md:flex md:h-full md:px-5">
           <Link
             href={link}
             target="_blank"
-            className="scroll-m-20 text-lg font-semibold tracking-tight transition-colors group-hover:text-white md:text-3xl group-hover:dark:text-gray-900"
+            className="scroll-m-20 text-lg font-semibold tracking-tight transition-colors md:group-hover:text-white md:text-3xl md:group-hover:dark:text-gray-900"
           >
             {name}
             <ArrowUpRight className="ml-1 inline h-6 w-6 md:h-10 md:w-10" />
@@ -173,19 +173,22 @@ const ProjectCard = ({
             width={400}
           />
         </div>
+          <p className="md:hidden pb-4 text-sm leading-4 transition-colors md:group-hover:text-white md:max-w-[50vw] md:group-hover:dark:text-gray-900">
+            {description}
+          </p>
         {/* right side */}
         <div className="relative z-10 flex h-full flex-col items-end justify-between md:mt-5 md:px-5">
-          <div className="flex gap-2">
+          <div className="flex gap-1 md:gap-2 flex-wrap">
             {tags.map(tag => (
               <span
                 key={tag}
-                className="rounded-xl border bg-green-950 px-2 py-1 text-white transition-colors group-hover:bg-gray-200 group-hover:text-black dark:bg-gray-200 dark:text-black group-hover:dark:bg-green-950 group-hover:dark:text-gray-200"
+                className="rounded-xl border bg-gray-950 px-2 py-1 text-white transition-colors md:group-hover:bg-gray-200 md:group-hover:text-black dark:bg-gray-200 dark:text-black md:group-hover:dark:bg-green-950 md:group-hover:dark:text-gray-200"
               >
                 {tag}
               </span>
             ))}
           </div>
-          <p className="hidden pb-4 text-right leading-5 transition-colors group-hover:text-white md:block md:max-w-[50vw] group-hover:dark:text-gray-900">
+          <p className="hidden pb-4 text-right leading-5 transition-colors md:group-hover:text-white md:block md:max-w-[50vw] md:group-hover:dark:text-gray-900">
             {description}
           </p>
         </div>
